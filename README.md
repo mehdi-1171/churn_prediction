@@ -14,15 +14,17 @@ Target Variable: Churn
 
 #### Column Descriptions
 
-Customer Information:
+- Customer Information:
 
-customerID
+- customerID
 Unique identifier for each customer. This column is used only for identification and is not predictive.
 
-gender
+- gender
+
 Gender of the customer (Male, Female).
 
-SeniorCitizen
+- SeniorCitizen
+
 Indicates whether the customer is a senior citizen:
 1 = Yes, 0 = No.
 
