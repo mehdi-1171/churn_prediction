@@ -91,6 +91,89 @@ gender, Partner, Dependents, PhoneService, MultipleLines, InternetService, Onlin
 - Customer churn prediction
 - Business insights
 
+## Model
+
+### 1. LogisticRegression
+We Develop a **Logistic Regression** model for this data and give this result:
+Logistic Regression Results (Default Threshold = 0.3)
+- Classification Report: 
+ 
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|--------|
+| 0     | 0.89      | 0.75   | 0.82     | 1035   |
+| 1     | 0.52      | 0.75   | 0.61     | 374    |
+
+**Accuracy:** 0.75  
+**Macro Avg:** 0.71  
+**Weighted Avg:** 0.79  
+**ROC-AUC:** 0.8408
+
+Logistic Regression Results (Default Threshold = 0.5)
+
+| Class | Precision | Recall | F1-Score | Support |
+|------|----------|--------|----------|--------|
+| 0 (No Churn) | 0.85 | 0.89 | 0.87 | 1035 |
+| 1 (Churn) | 0.64 | 0.55 | 0.59 | 374 |
+
+**Accuracy:** 0.80  
+**Macro Avg (P / R / F1):** 0.74 / 0.72 / 0.73  
+**Weighted Avg (P / R / F1):** 0.79 / 0.80 / 0.79  
+**ROC-AUC:** 0.8408
+
+---------------------------------------------------
+
+
+### 2. Random Forest
+#### RF_1:
+I work on RF model and get this result:
+-  Random Forest Results (Threshold = 0.5)
+-  Classification Report
+
+| Class | Precision | Recall | F1-Score | Support |
+|------|----------|--------|----------|--------|
+| 0 (No Churn) | 0.83 | 0.89 | 0.86 | 1035 |
+| 1 (Churn) | 0.61 | 0.49 | 0.55 | 374 |
+
+**Accuracy:** 0.78  
+**Macro Avg (P / R / F1):** 0.72 / 0.69 / 0.70  
+**Weighted Avg (P / R / F1):** 0.77 / 0.78 / 0.77
+
+**ROC-AUC:** 0.8267
+
+- Note:
+> Random Forest was evaluated as a non-linear model; however, it did not outperform Logistic Regression in terms of ROC-AUC and Churn Recall, likely due to the sparse and mostly linear nature of the dataset. Therefore, it was excluded from further consideration.
+
+#### RF_2:
+We use Grid Search cross-validation for find best Parameter for Data:
+- BEST PARAMETER:
+> class_weight={0: 1, 1: 2}
+>
+> min_samples_leaf=20
+> 
+> min_samples_split=10
+> 
+> n_estimators=500
+> 
+> random_state=42
+
+
+- Classification Report
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|----------|--------|----------|--------|
+| 0 (No Churn) | 0.89 | 0.80 | 0.84 | 1035 |
+| 1 (Churn)    | 0.56 | 0.72 | 0.63 | 374 |
+
+**Accuracy:** 0.78  
+**Macro Avg (P / R / F1):** 0.73 / 0.76 / 0.74  
+**Weighted Avg (P / R / F1):** 0.80 / 0.78 / 0.79  
+
+**ROC-AUC:** 0.847
+
+---------------------------------------------------
+
+### 3. XGBoost Regression
+
 
 ## License
 
