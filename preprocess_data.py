@@ -82,3 +82,49 @@ class PrepareData:
 # p = PrepareData(test_size=0.2, scale=True)
 # p.preprocess_handler()
 #
+
+
+class FeatureEngineer(PrepareData):
+
+    def __init__(self, test_size, scale):
+        super().__init__(test_size, scale)
+
+    def add_tenure_based_features(self):
+        self.df['tenure_years'] = self.df['tenure'] / 12
+        self.df['is_new_customer'] = (self.df['tenure'] < 6).astype(int)
+        self.df['is_loyal_customer'] = (self.df['tenure'] > 24).astype(int)
+
+    def cost_business_feature(self):
+        self.df['monthly_to_total_ratio'] = self.df['MonthlyCharges'] / (self.df['TotalCharges'] + 1)
+        self.df['high_monthly_charge'] = (self.df['MonthlyCharges'] > self.df['MonthlyCharges'].median()).astype(int)
+
+    def service_density(self):
+        service_cols = [
+            'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+            'TechSupport', 'StreamingTV', 'StreamingMovies'
+        ]
+        self.df['num_services'] = self.df[service_cols].sum(axis=1)
+
+    def add_feature(self):
+        self.add_tenure_based_features()
+        self.cost_business_feature()
+        self.service_density()
+
+    def preprocess_handler(self):
+        self.read_data()
+        self.convert_categorical_boolean_columns()
+        self.encode_categorical_data()
+        self.clean_data()
+        self.add_feature()
+        self.separate_depend_independent_parameter()
+        self.scale_data()
+        self.separate_test_train()
+
+
+""" TEST """
+# f = FeatureEngineer(test_size=0.2, scale=True)
+# f.read_data()
+# f.convert_categorical_boolean_columns()
+# f.encode_categorical_data()
+# f.clean_data()
+# f.add_feature()
