@@ -259,7 +259,7 @@ Overall, XGBoost with a lower decision threshold is recommended for identifying 
 - matplotlib
 - scikit-learn
 
-## Future Work
+## 💡 Future Work
 
 - Advanced feature engineering based on customer behavior patterns
 - SHAP analysis for better model interpretability
