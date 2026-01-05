@@ -2,11 +2,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, roc_auc_score, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
 from preprocess_data import PrepareData
 
 
 class LogisticRegressionModel:
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    FIG_PATH = os.path.join(ROOT_DIR, 'fig/')
 
     def __init__(self, threshold):
         self.C = 1.0
@@ -48,6 +51,7 @@ class LogisticRegressionModel:
         plt.ylabel("Actual")
         plt.title("Confusion Matrix")
         plt.show()
+        plt.savefig(self.FIG_PATH + 'Logistic_Regression_heatmap.png')
 
     def process_handler(self):
         self.get_data()
@@ -60,9 +64,5 @@ class LogisticRegressionModel:
 
 """ TEST """
 # log = LogisticRegressionModel(threshold=0.3)
-# log.get_data()
-# log.create_model()
-# log.train()
-# log.predict()
-# log.predict_proba()
-# log.evaluate()
+# log.process_handler()
+
