@@ -6,14 +6,15 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
-from preprocess_data import PrepareData
+from preprocess_data import PrepareData, FeatureEngineer
 
 
 class RandomForestModel:
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     FIG_PATH = os.path.join(ROOT_DIR, 'fig/')
 
-    def __init__(self, threshold, auto_param):
+    def __init__(self, feature, threshold, auto_param):
+        self.feature = feature
         self.auto_param = auto_param
         self.threshold = threshold
         self.n_estimators = 500
@@ -28,7 +29,10 @@ class RandomForestModel:
         self.y_prob = None
 
     def get_data(self):
-        data_instance = PrepareData(test_size=0.2, scale=False)
+        if self.feature:
+            data_instance = FeatureEngineer(test_size=0.2, scale=False)
+        else:
+            data_instance = PrepareData(test_size=0.2, scale=False)
         self.X_train, self.X_test, self.y_train, self.y_test = data_instance.data_getter()
 
     def tune_parameters(self):
@@ -123,10 +127,15 @@ class RandomForestModel:
         self.plot_feature_importance()
 
 
+""" best Practice 
+RandomForestClassifier: 
+                       class_weight={0: 1, 1: 2}, 
+                       min_samples_leaf=20,
+                       min_samples_split=10, 
+                       n_estimators=500, 
+                       random_state=42
+"""
 """ TEST """
-k = RandomForestModel(threshold=0.5, auto_param=False)
-k.process_handler()
+# k = RandomForestModel(feature=False, threshold=0.5, auto_param=False)
+# k.process_handler()
 
-# best Practice:
-# RandomForestClassifier(class_weight={0: 1, 1: 2}, min_samples_leaf=20,
-#                        min_samples_split=10, n_estimators=500, random_state=42)
