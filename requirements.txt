@@ -7,3 +7,4 @@ scikit-learn==1.7.2
 requests==2.32.5
 seaborn==0.13.2
 openpyxl==3.1.5
+xgboost==3.1.2
