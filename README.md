@@ -244,6 +244,12 @@ These steps help reduce model bias and improve learning efficiency, especially f
 
 Overall, XGBoost with a lower decision threshold is recommended for identifying high-risk customers in real-world churn management scenarios.
 
+## Dependencies
+- pandas
+- numpy
+- seaborn
+- matplotlib
+- scikit-learn
 
 ## Future Work
 

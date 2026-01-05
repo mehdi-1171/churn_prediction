@@ -134,18 +134,18 @@ class XGBoostModel:
 
 
 """ TEST """
-param_dist = {
-    "n_estimators": [300, 500, 600],
-    "max_depth": [2, 3, 4, 8],
-    "learning_rate": [0.01, 0.03, 0.05, 0.1, 0.2],
-    "subsample": [0.6, 0.6, 0.7, 0.8],
-    "colsample_bytree": [0.7, 0.8, 0.9, 0.95, 1],
-    "min_child_weight": [0, 0.5, 1, 3, 5, 10],
-    "scale_pos_weight": [2.6, 2.8, 2.9, 3.2]
-}
-param2 = {}
-x = XGBoostModel(feature=True, threshold=0, param_dist=param_dist)
-x.process_handler()
+# param_dist = {
+#     "n_estimators": [300, 500, 600],
+#     "max_depth": [2, 3, 4, 8],
+#     "learning_rate": [0.01, 0.03, 0.05, 0.1, 0.2],
+#     "subsample": [0.6, 0.6, 0.7, 0.8],
+#     "colsample_bytree": [0.7, 0.8, 0.9, 0.95, 1],
+#     "min_child_weight": [0, 0.5, 1, 3, 5, 10],
+#     "scale_pos_weight": [2.6, 2.8, 2.9, 3.2]
+# }
+# param2 = {}
+# x = XGBoostModel(feature=True, threshold=0, param_dist=param_dist)
+# x.process_handler()
 
 # x.best_xgb.n_estimators
 # x.best_xgb.max_depth

@@ -1,11 +1,7 @@
-from pandas import DataFrame, concat, get_dummies, to_numeric, crosstab, read_excel
+from pandas import DataFrame, get_dummies, read_excel
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-from numpy import array
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import OneHotEncoder
 
 
 class PrepareData:
